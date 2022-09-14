@@ -9,8 +9,8 @@ from Bio import SeqIO
 import pandas as pd
 
 # HBVisor
-from src import appConst
-from src import funKit
+from . import appConst
+from . import funKit
 
 
 ## Custom SEQ class ##
@@ -28,15 +28,11 @@ class newHBVpart:
         print(dict((k, self.reportDict[k]) for k in ['Name', 'Conclusion'] if k in self.reportDict))
 
     def blastOn(self):
-        print(11)
-        appConst.argsCmd.update({'-db' : appConst.argsCmd['-db'].substitute(root=f'{self.root}/data/hbv')})
-        appConst.argsCmd.update({
-            '-query' : appConst.argsCmd['-query']\
-                .substitute(filePath=self.filePath)
-            })
+        appConst.argsCmd.update({'-db' : appConst.argsCmd['-db'].substitute(root=f'{self.root}' + '/hbv1')})
+        appConst.argsCmd.update({'-query' : appConst.argsCmd['-query'].substitute(file=self.filePath)})
         self.blastDone = run(
             [
-                appConst.blastCmd.substitute(tools=f'{self.root}/data'),
+                appConst.blastCmd.substitute(root=f'{self.root}' + '/blastn'),
                     *list(itertools.chain.from_iterable(
                         zip(
                             list(appConst.argsCmd.keys()), 
@@ -47,6 +43,7 @@ class newHBVpart:
             , '-subject_besthit'],
             capture_output=True
         ).stdout.decode('utf-8').strip('\n')
+        print(self.blastDone)
         self.blastFeatures = funKit.parseBlastOut(self.blastDone)
 
     def makeReport(self):

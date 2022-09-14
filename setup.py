@@ -3,7 +3,7 @@ from subprocess import run
 import pathlib
 
 root = str(pathlib.Path(__file__).parent.resolve())
-run(['chmod', '+x', f'{root}/hbv/data/blastn'])
+run(['chmod', '+x', f'{root}/hbv/blastn'])
 
 setup(
     name='hbv',
