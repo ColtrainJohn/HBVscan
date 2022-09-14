@@ -29,14 +29,14 @@ class newHBVpart:
 
     def blastOn(self):
         print(11)
-        appConst.argsCmd.update({'-db' : appConst.argsCmd['-db'].substitute(root=f'{self.root}/src/hbv')})
+        appConst.argsCmd.update({'-db' : appConst.argsCmd['-db'].substitute(root=f'{self.root}/data/hbv')})
         appConst.argsCmd.update({
             '-query' : appConst.argsCmd['-query']\
                 .substitute(filePath=self.filePath)
             })
         self.blastDone = run(
             [
-                appConst.blastCmd.substitute(tools=f'{self.root}/src'),
+                appConst.blastCmd.substitute(tools=f'{self.root}/data'),
                     *list(itertools.chain.from_iterable(
                         zip(
                             list(appConst.argsCmd.keys()), 

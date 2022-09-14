@@ -8,7 +8,7 @@ blastOutCols = 'qseqid sseqid qstart qend sstart send qseq sseq evalue length mi
 blastCmd = Template('$tools/blastn')
 
 argsCmd = {
-        '-db' : Template('$root/src/BLASTdb/hbv'),
+        '-db' : Template('$root/data/hbv'),
         '-query' : Template('$filePath'),
         '-outfmt' : "6 " + blastOutCols,
         '-max_target_seqs' : '1'
