@@ -1,17 +1,20 @@
 from setuptools import setup, find_packages
+from subprocess import run
+import pathlib
+
+root = str(pathlib.Path(__file__).parent.resolve())
+run(['chmod', '+x', f'{root}/src/blastn'])
 
 setup(
-    name='HBVisor',
-    version='0.1',
+    name='hbv',
+    version='0.0.2',
     description='HBV sequence classifier',
-    url='http://github.com/',
     author='Semen Selezov',
-    author_email='selezov@gmail.com',
-    license='Ok',
-    packages=find_packages(),
-    zip_safe=False,
+    author_email='1selezov1@gmail.com',
+    packages=['', 'src'],
+    include_package_data=True,
     install_requires=[
        'biopython>=1.79',
        'pandas>=1.1.3'
-       ],
+    ]
 )

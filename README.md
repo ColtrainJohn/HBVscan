@@ -1,2 +1,3 @@
-# HBVscan
-HBV sequence classifier
+# HBVisor
+
+HBV sequence classification
