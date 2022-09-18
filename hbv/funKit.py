@@ -8,13 +8,16 @@ from . import appConst
 
 ## Parse arguments ##
 def parseArgs():
-    parser = ArgumentParser()
+    parser = argparse.ArgumentParser()
     parser.add_argument(
-        "filePath", help="File absolute path", type=str
-        )
+        "data", help="File absolute path", type=str
+    )
     parser.add_argument(
-        "-result", "--result", help="Result file name", type=str, default='result'
-        )
+        "out_all", help="File absolute path", type=str, default=False
+    )
+    parser.add_argument(
+        "out_report", help="File absolute path", type=str, default=False
+    )
     args = parser.parse_args()
     return args
 
@@ -31,7 +34,6 @@ def parseBlastOut(blastOut):
 
 
 def checkPositions(resultDict):
-    print(resultDict)
     nucInfo = []
     for i, (c1, c2) in enumerate(zip(
         *[
